@@ -1,7 +1,7 @@
 /* Importera npm-paket sqlite3 med hjälp av require() och lagrar i variabeln sqlite */
 const sqlite = require('sqlite3').verbose();
 /* Skapar ny koppling till databas-fil som skapades tidigare. */
-const db = new sqlite.Database('./gik339.db');
+const db = new sqlite.Database('./server/gik339.db');
 
 /* Importerar npm-paket express och lagrar i variabeln express */
 const express = require('express');
