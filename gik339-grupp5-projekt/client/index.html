@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="#" />
+    <title>Användarregistrering</title>
+  </head>
+  <body class="min-h-[100vh] bg-gradient-to-b from-slate-800 to-slate-700 text-white">
+    <header class="mt-10 text-center">
+      <h1 class="text-3xl">Användarregistrering</h1>
+    </header>
+    <main class="mt-10">
+      <div class="w-[55rem] mx-auto mt-8 bg-white/25 p-3 rounded-lg">
+        <form id="userForm">
+          <div class="form-control my-4 mx-auto flex w-3/4 items-center">
+            <label for="firstName" class="mr-4 text-xl w-40">Förnamn</label>
+            <input class="text-slate-800 p-1 flex-1 rounded-md" type="text" name="firstName" />
+          </div>
+          <div class="form-control my-4 mx-auto flex w-3/4 items-center">
+            <label for="lastName" class="mr-4 text-xl w-40">Efternamn</label>
+            <input class="text-slate-800 p-1 flex-1 rounded-md" type="text" name="lastName" />
+          </div>
+          <div class="form-control my-4 mx-auto flex w-3/4 items-center">
+            <label for="username" class="mr-4 text-xl w-40">Användarnamn</label>
+            <input class="text-slate-800 p-1 flex-1 rounded-md" type="text" name="username" />
+          </div>
+          <div class="form-control my-4 mx-auto flex w-3/4 items-center">
+            <label for="color" class="mr-4 text-xl w-40">Favoritfärg</label>
+            <select class="bg-white text-slate-800 p-1 flex-1 rounded-md" name="color">
+              <option value="purple">Lila</option>
+              <option value="green">Grön</option>
+              <option value="gray">Grå</option>
+              <option value="red">Röd</option>
+              <option value="yellow">Gul</option>
+            </select>
+          </div>
+          <div class="form-control my-4 mx-auto flex w-3/4 items-center justify-end gap-4">
+            <button
+              class="px-4 py-1 bg-slate-200 text-slate-800 rounded-md hover:bg-slate-300"
+              type="reset"
+              name="clearUserForm">
+              Rensa
+            </button>
+            <button
+              class="px-4 py-1 bg-slate-200 text-slate-800 rounded-md hover:bg-slate-300"
+              type="submit"
+              name="submitUserForm">
+              Skicka
+            </button>
+          </div>
+        </form>
+      </div>
+      <div id="listContainer"></div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
