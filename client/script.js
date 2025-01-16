@@ -7,7 +7,7 @@ function fetchData() {
     .then((result) => result.json())
     .then((cars) => {
       if (cars.length > 0) {
-        let html = `<ul class=" my-3 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-4">`;
+        let html = `<ul class="my-3 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-4">`;
         cars.forEach((car) => {
           html += `
         <li
@@ -53,6 +53,7 @@ function setCurrentcar(id) {
 function deletecar(id) {
   console.log('delete', id);
   fetch(`${url}/${id}`, { method: 'DELETE' }).then((result) => fetchData());
+  alert('Bilen har tagits bort.');
 }
 
 carForm.addEventListener('submit', handleSubmit);
@@ -88,5 +89,16 @@ function handleSubmit(e) {
 
     localStorage.removeItem('currentId');
     carForm.reset();
+    alert('Bilen har lagts till eller uppdaterats.');
   });
+}
+
+module.exports = {
+  theme: {
+    extend: {
+      animation: {
+        wiggle: 'wiggle 1s ease-in-out infinite',
+      }
+    }
+  }
 }
