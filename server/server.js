@@ -30,9 +30,9 @@ server.listen(3000, () => {
 });
 
 /* Hantering av GET-requests till endpointen /users */
-server.get('/users', (req, res) => {
+server.get('/cars', (req, res) => {
   /* sql-query för att hämta alla users ur databasen. */
-  const sql = 'SELECT * FROM users';
+  const sql = 'SELECT * FROM cars';
   /* Anrop till db-objektets funktion .all som används till att hämta upp rader ur en tabell */
   db.all(sql, (err, rows) => {
     /* Callbackfunktionen har parametern err för att lagra eventuella fel */
@@ -46,10 +46,10 @@ server.get('/users', (req, res) => {
   });
 });
 
-server.get('/users/:id', (req, res) => {
+server.get('/cars/:id', (req, res) => {
   const id = req.params.id;
 
-  const sql = `SELECT * FROM users WHERE id=${id}`;
+  const sql = `SELECT * FROM cars WHERE id=${id}`;
 
   db.all(sql, (err, rows) => {
     if (err) {
@@ -60,11 +60,11 @@ server.get('/users/:id', (req, res) => {
   });
 });
 
-server.post('/users', (req, res) => {
-  const user = req.body;
-  const sql = `INSERT INTO users(firstName, lastName, username, color) VALUES (?,?,?,?)`;
+server.post('/cars', (req, res) => {
+  const car = req.body;
+  const sql = `INSERT INTO cars(carbrand, model, year, color) VALUES (?,?,?,?)`;
 
-  db.run(sql, Object.values(user), (err) => {
+  db.run(sql, Object.values(car), (err) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
@@ -74,24 +74,24 @@ server.post('/users', (req, res) => {
   });
 });
 
-server.put('/users', (req, res) => {
+server.put('/cars', (req, res) => {
   const bodyData = req.body;
 
   const id = bodyData.id;
-  const user = {
-    firstName: bodyData.firstName,
-    lastName: bodyData.lastName,
-    username: bodyData.username,
+  const car = {
+    carbrand: bodyData.carbrand,
+    model: bodyData.model,
+    year: bodyData.year,
     color: bodyData.color
   };
 
   let updateString = '';
-  const columnsArray = Object.keys(user);
+  const columnsArray = Object.keys(car);
   columnsArray.forEach((column, i) => {
-    updateString += `${column}="${user[column]}"`;
+    updateString += `${column}="${car[column]}"`;
     if (i !== columnsArray.length - 1) updateString += ',';
   });
-  const sql = `UPDATE users SET ${updateString} WHERE id=${id}`;
+  const sql = `UPDATE cars SET ${updateString} WHERE id=${id}`;
 
   db.run(sql, (err) => {
     if (err) {
@@ -104,9 +104,9 @@ server.put('/users', (req, res) => {
   //UPDATE users SET firstName="Mikaela",lastName="Hedberg" WHERE id=1
 });
 
-server.delete('/users/:id', (req, res) => {
+server.delete('/cars/:id', (req, res) => {
   const id = req.params.id;
-  const sql = `DELETE FROM users WHERE id = ${id}`;
+  const sql = `DELETE FROM cars WHERE id = ${id}`;
 
   db.run(sql, (err) => {
     if (err) {
