@@ -7,19 +7,20 @@ function fetchData() {
     .then((result) => result.json())
     .then((cars) => {
       if (cars.length > 0) {
-        let html = `<ul class="w-3/4 my-3 mx-auto flex flex-wrap gap-2 justify-center">`;
+        let html = `<ul class=" my-3 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-4">`;
         cars.forEach((car) => {
           html += `
         <li
-          class="bg-${car.color}-200 basis-1/4 text-${car.color}-900 p-2 rounded-md border-2 border-${car.color}-400 flex flex-col justify-between">
-          <h3>${car.carbrand} ${car.model}</h3>
-          <p>Årtal: ${car.year}</p>
-          <div>
+          class="bg-${car.color}-200 xl:bg-${car.color}-500 text-${car.color}-900 p-4 rounded-md border-2 border-${car.color}-400 grid grid-cols-1 justify-between hover:underline hover:scale-110">
+          <h3 class="text-lg font-bold">${car.carbrand} ${car.model}</h3>
+          <p class="text-sm">Årtal: ${car.year}</p>
+          <div class="mt-4 flex justify-between">
             <button
-              class="border border-${car.color}-300 hover:bg-white/100 rounded-md bg-white/50 p-1 text-sm mt-2" onclick="setCurrentcar(${car.id})">
+              class="border border-${car.color}-300 hover:bg-white/100 rounded-md bg-white/50 px-3 py-1 text-sm" onclick="setCurrentcar(${car.id})">
               Ändra
             </button>
-            <button class="border border-${car.color}-300 hover:bg-white/100 rounded-md bg-white/50 p-1 text-sm mt-2" onclick="deletecar(${car.id})">
+            <button
+              class="border border-${car.color}-300 hover:bg-white/100 rounded-md bg-white/50 px-3 py-1 text-sm" onclick="deletecar(${car.id})">
               Ta bort
             </button>
           </div>
@@ -33,7 +34,6 @@ function fetchData() {
       }
     });
 }
-
 function setCurrentcar(id) {
   console.log('current', id);
 
