@@ -6,56 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="#" />
-    <title>Användarregistrering</title>
+    <title>Bilregistrering</title>
   </head>
-  <body class="min-h-[100vh] bg-gradient-to-b from-slate-800 to-slate-700 text-white">
-    <header class="mt-10 text-center">
-      <h1 class="text-3xl">Användarregistrering</h1>
-    </header>
-    <main class="mt-10">
-      <div class="w-[55rem] mx-auto mt-8 bg-white/25 p-3 rounded-lg">
-        <form id="carForm">
-          <div class="form-control my-4 mx-auto flex w-3/4 items-center">
-            <label for="carbrand" class="mr-4 text-xl w-40">Bilmärke</label>
-            <input class="text-slate-800 p-1 flex-1 rounded-md" type="text" name="carbrand" />
-          </div>
-          <div class="form-control my-4 mx-auto flex w-3/4 items-center">
-            <label for="model" class="mr-4 text-xl w-40">Bilmodell</label>
-            <input class="text-slate-800 p-1 flex-1 rounded-md" type="text" name="model" />
-          </div>
-          <div class="form-control my-4 mx-auto flex w-3/4 items-center">
-            <label for="year" class="mr-4 text-xl w-40">Årtal</label>
-            <input class="text-slate-800 p-1 flex-1 rounded-md" type="text" name="year" />
-          </div>
-          <div class="form-control my-4 mx-auto flex w-3/4 items-center">
-            <label for="color" class="mr-4 text-xl w-40">Favoritfärg</label>
-            <select class="bg-white text-slate-800 p-1 flex-1 rounded-md" name="color">
-              <option value="purple">Lila</option>
-              <option value="green">Grön</option>
-              <option value="gray">Grå</option>
-              <option value="red">Röd</option>
-              <option value="yellow">Gul</option>
-            </select>
-          </div>
-          <div class="form-control my-4 mx-auto flex w-3/4 items-center justify-end gap-4">
+    <body class="min-h-screen grid grid-cols-12 sm:bg-indigo-500 md:bg-red-300 lg:bg-yellow-300 xl:bg-yellow-900 from-slate-800 to-slate-700 text-green-900">
+  <header class="mt-10 grid col-start-2 col-end-11 text-center">
+    <h1 class="text-3xl animate-pulse">Bilregistrering</h1>
+  </header>
+  <main class="mt-10 grid col-start-2 col-end-11">
+    <div class="mt-8 bg-white/25 p-6 rounded-lg">
+      <form id="carForm" class="mx-auto grid grid-cols-1 gap-6">
+        <div class="grid grid-cols-4 grid-rows-2">
+          <label for="carbrand" class="text-xl row-start-1 mx-5">Bilmärke</label>
+          <input
+            class="col-span-4 row-start-2 mx-5 text-slate-800 p-2 rounded-md border border-gray-300"
+            type="text"
+            name="carbrand"
+            placeholder="Bilmärke"
+          />
+        </div>
+        <div class="grid grid-cols-4 grid-rows-2 items-center">
+          <label for="model" class="text-xl  row-start-1 mx-5">Bilmodell</label>
+          <input
+            class="col-span-4 row-start-2 mx-5 text-slate-800 p-2 rounded-md border border-gray-300"
+            type="text"
+            name="model"
+            placeholder="Bilmodell"
+          />
+        </div>
+        <div class="grid grid-cols-4 grid-rows-2 items-center">
+          <label for="year" class="text-xl row-start-1 mx-5">Årtal</label>
+          <input
+            class="col-span-4 row-start-2 mx-5 text-slate-800 p-2 rounded-md border border-gray-300"
+            type="text"
+            name="year"
+            placeholder="Årtal"
+          />
+        </div>
+        <div class="grid grid-cols-4 grid-rows-2 items-center">
+          <label for="color" class="text-xl row-start-1 mx-5">Favoritfärg</label>
+          <select
+            class="col-span-4 row-start-2 mx-5 bg-white text-slate-800 p-2 rounded-md border border-gray-300"
+            name="color"
+          >
+            <option value="purple">Lila</option>
+            <option value="green">Grön</option>
+            <option value="gray">Grå</option>
+            <option value="red">Röd</option>
+            <option value="yellow">Gul</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
             <button
-              class="px-4 py-1 bg-slate-200 text-slate-800 rounded-md hover:bg-slate-300"
+              class="px-4 py-2 bg-gray-200 text-slate-800 rounded-md hover:bg-gray-300"
               type="reset"
-              name="clearCarForm">
+              name="clearCarForm"
+            >
               Rensa
             </button>
             <button
-              class="px-4 py-1 bg-slate-200 text-slate-800 rounded-md hover:bg-slate-300"
+              class="px-4 py-2 bg-gray-200 text-slate-800 rounded-md hover:bg-gray-300"
               type="submit"
-              name="submitCarForm">
+              name="submitCarForm"
+            >
               Skicka
             </button>
-          </div>
-        </form>
-      </div>
-      <div id="listContainer"></div>
-    </main>
+        </div>
+      </form>
+    </div>
+    <div id="listContainer"></div>
+  </main>
+  <script src="script.js"></script>
+</body>
 
-    <script src="script.js"></script>
-  </body>
 </html>
