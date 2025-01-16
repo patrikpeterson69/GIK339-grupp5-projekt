@@ -13,39 +13,39 @@
     <h1 class="text-3xl animate-pulse">Bilregistrering</h1>
   </header>
   <main class="mt-10 grid col-start-2 col-end-11">
-    <div class="mx-auto mt-8 bg-white/25 p-6 rounded-lg">
-      <form id="carForm" class="mx-auto grid grid-cols-1 gap-6 ">
-        <div class="grid grid-cols-4 items-center">
-          <label for="carbrand" class="text-xl col-span-1 mx-5">Bilmärke</label>
+    <div class="mt-8 bg-white/25 p-6 rounded-lg">
+      <form id="carForm" class="mx-auto grid grid-cols-1 gap-6">
+        <div class="grid grid-cols-4 grid-rows-2">
+          <label for="carbrand" class="text-xl row-start-1 mx-5">Bilmärke</label>
           <input
-            class="col-span-3 text-slate-800 p-2 rounded-md border border-gray-300"
+            class="col-span-4 row-start-2 mx-5 text-slate-800 p-2 rounded-md border border-gray-300"
             type="text"
             name="carbrand"
             placeholder="Bilmärke"
           />
         </div>
-        <div class="grid grid-cols-4 items-center">
-          <label for="model" class="text-xl col-span-1 mx-5">Bilmodell</label>
+        <div class="grid grid-cols-4 grid-rows-2 items-center">
+          <label for="model" class="text-xl  row-start-1 mx-5">Bilmodell</label>
           <input
-            class="col-span-3 text-slate-800 p-2 rounded-md border border-gray-300"
+            class="col-span-4 row-start-2 mx-5 text-slate-800 p-2 rounded-md border border-gray-300"
             type="text"
             name="model"
             placeholder="Bilmodell"
           />
         </div>
-        <div class="grid grid-cols-4 items-center">
-          <label for="year" class="text-xl col-span-1 mx-5">Årtal</label>
+        <div class="grid grid-cols-4 grid-rows-2 items-center">
+          <label for="year" class="text-xl row-start-1 mx-5">Årtal</label>
           <input
-            class="col-span-3 text-slate-800 p-2 rounded-md border border-gray-300"
+            class="col-span-4 row-start-2 mx-5 text-slate-800 p-2 rounded-md border border-gray-300"
             type="text"
             name="year"
             placeholder="Årtal"
           />
         </div>
-        <div class="grid grid-cols-4 items-center">
-          <label for="color" class="text-xl col-span-1 mx-5">Favoritfärg</label>
+        <div class="grid grid-cols-4 grid-rows-2 items-center">
+          <label for="color" class="text-xl row-start-1 mx-5">Favoritfärg</label>
           <select
-            class="col-span-3 bg-white text-slate-800 p-2 rounded-md border border-gray-300"
+            class="col-span-4 row-start-2 mx-5 bg-white text-slate-800 p-2 rounded-md border border-gray-300"
             name="color"
           >
             <option value="purple">Lila</option>
@@ -55,8 +55,7 @@
             <option value="yellow">Gul</option>
           </select>
         </div>
-        <div class="grid grid-cols-4 gap-4">
-          <div class="col-span-3 col-start-2 flex justify-end space-x-4">
+        <div class="grid grid-cols-2 gap-4">
             <button
               class="px-4 py-2 bg-gray-200 text-slate-800 rounded-md hover:bg-gray-300"
               type="reset"
@@ -71,7 +70,6 @@
             >
               Skicka
             </button>
-          </div>
         </div>
       </form>
     </div>

@@ -11,10 +11,10 @@ function fetchData() {
         cars.forEach((car) => {
           html += `
         <li
-          class="bg-${car.color}-200 xl:bg-${car.color}-500 text-${car.color}-900 p-4 rounded-md border-2 border-${car.color}-400 grid grid-cols-1 justify-between hover:underline hover:scale-110">
+          class="bg-${car.color}-200 xl:bg-${car.color}-500 text-${car.color}-900 p-4 rounded-md border-2 border-${car.color}-400 grid grid-cols-1 hover:scale-110">
           <h3 class="text-lg font-bold">${car.carbrand} ${car.model}</h3>
           <p class="text-sm">Årtal: ${car.year}</p>
-          <div class="mt-4 flex justify-between">
+          <div class="mt-4">
             <button
               class="border border-${car.color}-300 hover:bg-white/100 rounded-md bg-white/50 px-3 py-1 text-sm" onclick="setCurrentcar(${car.id})">
               Ändra
