@@ -61,10 +61,10 @@ server.get('/cars/:id', (req, res) => {
 });
 
 server.post('/cars', (req, res) => {
-  const user = req.body;
+  const car = req.body;
   const sql = `INSERT INTO cars(carbrand, model, year, color) VALUES (?,?,?,?)`;
 
-  db.run(sql, Object.values(user), (err) => {
+  db.run(sql, Object.values(car), (err) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
@@ -78,7 +78,7 @@ server.put('/cars', (req, res) => {
   const bodyData = req.body;
 
   const id = bodyData.id;
-  const user = {
+  const car = {
     carbrand: bodyData.carbrand,
     model: bodyData.model,
     year: bodyData.year,
@@ -86,9 +86,9 @@ server.put('/cars', (req, res) => {
   };
 
   let updateString = '';
-  const columnsArray = Object.keys(user);
+  const columnsArray = Object.keys(car);
   columnsArray.forEach((column, i) => {
-    updateString += `${column}="${user[column]}"`;
+    updateString += `${column}="${car[column]}"`;
     if (i !== columnsArray.length - 1) updateString += ',';
   });
   const sql = `UPDATE cars SET ${updateString} WHERE id=${id}`;

@@ -13,7 +13,7 @@ function fetchData() {
         <li
           class="bg-${car.color}-200 basis-1/4 text-${car.color}-900 p-2 rounded-md border-2 border-${car.color}-400 flex flex-col justify-between">
           <h3>${car.carbrand} ${car.model}</h3>
-          <p>Användarnamn: ${car.year}</p>
+          <p>Årtal: ${car.year}</p>
           <div>
             <button
               class="border border-${car.color}-300 hover:bg-white/100 rounded-md bg-white/50 p-1 text-sm mt-2" onclick="setCurrentcar(${car.id})">
