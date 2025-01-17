@@ -1,78 +1,86 @@
-/* Importera npm-paket sqlite3 med hjälp av require() och lagrar i variabeln sqlite */
+/* Importera npm-paket sqlite3 */
 const sqlite = require('sqlite3').verbose();
-/* Skapar ny koppling till databas-fil som skapades tidigare. */
 const db = new sqlite.Database('./server/gik339.db');
-
-/* Importerar npm-paket express och lagrar i variabeln express */
 const express = require('express');
-/* Skapar server med hjälp av express */
 const server = express();
 
-/* Sätter konfiguration på servern */
 server
-  /* Data ska kommuniceras i JSON-format */
   .use(express.json())
-  /* Sättet som data ska kodas och avkodas på */
   .use(express.urlencoded({ extended: false }))
   .use((req, res, next) => {
-    /* Headers för alla förfrågningar. Hanterar regler för CORS (vilka klienter som får anropa vår server och hur.) */
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', '*');
     res.header('Access-Control-Allow-Methods', '*');
-    /* Säger åt servern att fortsätta processa förfrågan */
     next();
   });
 
-/* Startar servern på port 3000 */
 server.listen(3000, () => {
-  /* Meddelande för feedback att servern körs */
   console.log('Server running on http://localhost:3000');
 });
 
-/* Hantering av GET-requests till endpointen /users */
+// Här skapar vi upp en hantering av get req till endpointen cars 
 server.get('/cars', (req, res) => {
-  /* sql-query för att hämta alla users ur databasen. */
+  // sql fråga som hämtar alla bilar ur databasen. */
   const sql = 'SELECT * FROM cars';
-  /* Anrop till db-objektets funktion .all som används till att hämta upp rader ur en tabell */
+  // Anrop till db objektets funktion .all som används till att hämta upp rader ur vår tabell cars
   db.all(sql, (err, rows) => {
-    /* Callbackfunktionen har parametern err för att lagra eventuella fel */
+    // Callbackfunktion som har parametern err för att lagra eventuella fel 
     if (err) {
-      /* Om det finns något i det objektet skickar vi ett svar tillbaka att något gick fel (status 500) och info om vad som gick fel (innehållet i objektet err) */
+      // Om det finns något i det objektet skickar vi ett svar tillbaka att något gick fel och info om vad som gick fel 
       res.status(500).send(err);
     } else {
-      /* Annars, om allt gick bra, skickar vi de rader som hämtades upp.  */
+      // Om allt gick bra skickar vi de rader om bilarna som hämtades upp.  
       res.send(rows);
     }
   });
 });
 
+// Server hanterar GET requests till endpointen "/cars/:id"
+// och hämtar en specifik bil baserat på det ID som skickas med i URL:en
 server.get('/cars/:id', (req, res) => {
+  // Hämtar ID  från URL-parametern ":id"
   const id = req.params.id;
 
+  // har skapar vi upp en SQL fråga för att hämta bilen med det angivna ID
   const sql = `SELECT * FROM cars WHERE id=${id}`;
 
+  // Anropar databasens .all metod för att utföra SQL-frågan
   db.all(sql, (err, rows) => {
+    // Kontrollera om det uppstår ett fel vid databasanropet
     if (err) {
+      // Skickar tillbaka en statuskod 500 och detaljer om felet
       res.status(500).send(err);
     } else {
+      // Om ingen fel uppstår skicka tillbaka den första bilen
       res.send(rows[0]);
     }
   });
 });
 
+/* Hanterar POST requests till endpointen "/cars"
+och lägger till en ny bil i databasen */
 server.post('/cars', (req, res) => {
+  // Hämtar bilens data från requestens body
   const car = req.body;
+
+  // SQL-fråga för att lägga till en ny bil i databasen
+  // Använder platshållare (?) för att förhindra SQL-injektion
   const sql = `INSERT INTO cars(carbrand, model, year, color) VALUES (?,?,?,?)`;
 
+  // Utför SQL query och skickar bilens data som värden
   db.run(sql, Object.values(car), (err) => {
+    // Om det uppstår ett fel vid insättning i databasen
     if (err) {
+      // Loggar vi felet och skickar tillbaka en statuskod 500 samt detaljer om felet
       console.log(err);
       res.status(500).send(err);
     } else {
+      // Om insättningen lyckas skicka tillbaka ett meddelande
       res.send('Bilen sparades');
     }
   });
 });
+
 
 server.put('/cars', (req, res) => {
   const bodyData = req.body;
